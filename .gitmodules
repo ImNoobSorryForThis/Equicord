@@ -1,6 +1,3 @@
-[submodule "src/equicordplugins/baseDecoder"]
-	path = src/equicordplugins/baseDecoder
-	url = https://github.com/ThePirateStoner/vencord-base64-decoder
 [submodule "src/equicordplugins/betterActivities"]
 	path = src/equicordplugins/betterActivities
 	url = https://github.com/D3SOX/vc-betterActivities
