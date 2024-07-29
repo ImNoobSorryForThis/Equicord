@@ -16,15 +16,6 @@
 [submodule "src/equicordplugins/customSounds"]
 	path = src/equicordplugins/customSounds
 	url = https://github.com/ScattrdBlade/customSounds
-[submodule "src/equicordplugins/cuteAnimeBoys"]
-	path = src/equicordplugins/cuteAnimeBoys
-	url = https://github.com/ShadiestGoat/vencord-cuteanimeboys
-[submodule "src/equicordplugins/discordColorways"]
-	path = src/equicordplugins/discordColorways
-	url = https://github.com/DaBluLite/DiscordColorways-VencordUserplugin
-[submodule "src/equicordplugins/keywordNotify"]
-	path = src/equicordplugins/keywordNotify
-	url = https://github.com/camila314/vencord-KeywordNotify
 [submodule "src/equicordplugins/newPluginsManager"]
 	path = src/equicordplugins/newPluginsManager
 	url = https://github.com/Sqaaakoi/vc-newPluginsManager.git
@@ -34,9 +25,6 @@
 [submodule "src/equicordplugins/sekaiStickers"]
 	path = src/equicordplugins/sekaiStickers
 	url = https://codeberg.org/maikokain/sekaistickers-vencord.git
-[submodule "src/equicordplugins/serverSearch"]
-	path = src/equicordplugins/serverSearch
-	url = https://gist.github.com/camila314/26890fe52d7be6b4a13167a65ea6efc1.git
 [submodule "src/equicordplugins/gensokyoRadioRPC"]
 	path = src/equicordplugins/gensokyoRadioRPC
 	url = https://github.com/ForkPrince/GensokyoRadioRPC.git
