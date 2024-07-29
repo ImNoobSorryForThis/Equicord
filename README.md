@@ -40,7 +40,6 @@ An enhanced version of [Vencord](https://github.com/Vendicated/Vencord) by [Vend
 - ColorMessage by Kyuuhachi
 - CommandPalette by Ethan
 - CopyUserMention by Cortex and castdrian
-- CustomAppIcons by Happy Enderman and SerStars
 - CustomSounds by ScattrdBlade
 - CuteAnimeBoys by ShadyGoat
 - CuteNekos by echo
