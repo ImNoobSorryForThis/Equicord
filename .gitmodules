@@ -22,15 +22,3 @@
 [submodule "src/equicordplugins/replaceActivityTypes"]
 	path = src/equicordplugins/replaceActivityTypes
 	url = https://github.com/nyakowint/replaceActivityTypes.git
-[submodule "src/equicordplugins/sekaiStickers"]
-	path = src/equicordplugins/sekaiStickers
-	url = https://codeberg.org/maikokain/sekaistickers-vencord.git
-[submodule "src/equicordplugins/gensokyoRadioRPC"]
-	path = src/equicordplugins/gensokyoRadioRPC
-	url = https://github.com/ForkPrince/GensokyoRadioRPC.git
-[submodule "src/equicordplugins/holyNotes"]
-	path = src/equicordplugins/holyNotes
-	url = https://github.com/WolfPlugs/HolyNotes-VC.git
-[submodule "src/equicordplugins/themeLibrary"]
-	path = src/equicordplugins/themeLibrary
-	url = https://github.com/Faf4a/ThemeLibrary
