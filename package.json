@@ -49,6 +49,7 @@
         "nanoid": "^5.0.7",
         "usercss-meta": "^0.12.0",
         "openai": "^4.30.0",
+        "opus-recorder": "^8.0.5",
         "virtual-merge": "^1.0.1"
     },
     "devDependencies": {

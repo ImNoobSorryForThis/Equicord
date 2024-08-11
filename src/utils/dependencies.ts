@@ -69,6 +69,8 @@ export interface ApngFrameData {
     playTime: number;
 }
 
+export const opusRecorderWorkerSrc = "https://www.unpkg.com/opus-recorder@8.0.5/dist/encoderWorker.min.js";
+
 // The below code is only used on the Desktop (electron) build of Vencord.
 // Browser (extension) builds do not contain these remote imports.
 
