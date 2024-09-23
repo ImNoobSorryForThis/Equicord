@@ -14,6 +14,6 @@ jobs:
       - uses: tgymnich/fork-sync@v2.0
         with:
           token: ${{ secrets.ETOKEN }}
-          owner: DamsDev1
+          owner: ImNoobSorryForThis
           base: main
           head: main
