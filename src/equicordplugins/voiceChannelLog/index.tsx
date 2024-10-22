@@ -120,6 +120,8 @@ export default definePlugin({
             voiceStates.forEach(state => {
                 // mmmm hacky workaround
                 const { userId, channelId } = state;
+                const user = UserStore.getUser(userId) as User & { globalName: string; };
+                const username = user.globalName || user.username;
                 let { oldChannelId } = state;
                 if (userId === clientUserId && channelId !== clientOldChannelId) {
                     oldChannelId = clientOldChannelId;
@@ -131,6 +133,7 @@ export default definePlugin({
 
                 const logEntry = {
                     userId,
+                    username,
                     oldChannel: oldChannelId || null,
                     newChannel: channelId || null,
                     timestamp: new Date()
