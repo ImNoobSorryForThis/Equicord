@@ -19,7 +19,8 @@
 import { Upload } from "@api/MessageEvents";
 import { definePluginSettings, Settings } from "@api/Settings";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, reverseExtensionMap } from "@utils/constants";
+import { Devs } from "@utils/constants";
+import { reverseExtensionMap } from "../../equicordplugins/fixFileExtensions/components";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByCodeLazy, findByPropsLazy } from "@webpack";
 
@@ -114,15 +115,16 @@ export default definePlugin({
     }, { noop: true }),
 
     anonymise(upload: AnonUpload) {
-        if ((upload.anonymise ?? settings.store.anonymiseByDefault) === false) return upload.filename;
 
         const file = upload.filename;
         const tarMatch = tarExtMatcher.exec(file);
         const extIdx = tarMatch?.index ?? file.lastIndexOf(".");
+        const fileName = extIdx !== -1 ? file.substring(0, extIdx) : "";
         let ext = extIdx !== -1 ? file.slice(extIdx) : "";
         if (Settings.plugins.FixFileExtensions.enabled) {
             ext = reverseExtensionMap[ext];
         }
+        if ((upload.anonymise ?? settings.store.anonymiseByDefault) === false) return fileName + ext;
 
         switch (settings.store.method) {
             case Methods.Random:
