@@ -80,7 +80,7 @@ jobs:
             - name: Upload Equicord Dev
               if: ${{ github.ref_name == 'dev' }}
               run: |
-                gh release upload devbuild --clobber dist/release/*
+                gh release upload testing --clobber dist/release/*
               env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
