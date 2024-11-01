@@ -56,11 +56,13 @@ jobs:
                   git config --global user.name "GitHub-Actions"
                   git config --global user.email actions@github.com
 
-            - name: Download build artifact
-              uses: actions/download-artifact@v3
+            - name: Download build artifact from triggered workflow
+              uses: dawidd6/action-download-artifact@v2
               with:
-                  name: build
-                  path: release
+                run_id: ${{ github.event.workflow_run.id }}
+                name: build
+                path: ./release
+                search_artifacts: true
 
             - name: Upload Stable Build to Builds repo
               if: ${{ github.ref_name == 'main' }}
