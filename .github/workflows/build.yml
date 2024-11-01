@@ -113,8 +113,8 @@ jobs:
             - name: Upload Plugins JSON to Equibored repo
               if: ${{ github.ref_name == 'main' }}
               run: |
-                git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git upload
-                cd upload
+                git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git plugins
+                cd plugins
 
                 cp ../dist/*.json .
                 git add -A
@@ -129,8 +129,8 @@ jobs:
             - name: Upload Stable Build to Builds repo
               if: ${{ github.ref_name == 'main' }}
               run: |
-                git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git upload
-                cd upload
+                git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git builds
+                cd builds
 
                 cd stable
                 mkdir -p $DATE/$TIME
@@ -149,8 +149,8 @@ jobs:
             - name: Upload Dev Build To Builds Repo
               if: ${{ github.ref_name == 'dev' }}
               run: |
-                git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git upload
-                cd upload
+                git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git builds
+                cd builds
 
                 cd devbuilds
                 mkdir -p $DATE/$TIME
