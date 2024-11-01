@@ -67,7 +67,7 @@ jobs:
                   rm release/package.json
                   rm release/*.map
 
-            - name: Setup User
+            - name: Setup Actions User
               run: |
                 git config --global user.name "github-actions[bot]"
                 git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -86,20 +86,10 @@ jobs:
               env:
                 GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Upload Plugins JSON to Equibored repo
-              if: ${{ github.ref_name == 'main' }}
+            - name: Setup Actions User
               run: |
-                git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git upload
-                cd upload
-
-                cp ../dist/*.json .
-                git add -A
-
-                git commit -m "Plugins for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-                git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git
-              env:
-                GH_REPO: Equicord/Equibored
-                USERNAME: GitHub-Actions
+                git config --global user.name "GitHub-Actions"
+                git config --global user.email actions@github.com
 
             - name: Get current date
               id: date
@@ -113,10 +103,26 @@ jobs:
               with:
                 format: "HH-mm-ss"
 
+            - name: Upload Plugins JSON to Equibored repo
+              if: ${{ github.ref_name == 'main' }}
+              run: |
+                git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git upload
+                cd upload
+
+                cp ../dist/*.json .
+                git add -A
+
+                git commit -m "Plugins for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
+                git push --force https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git
+              env:
+                API_TOKEN: ${{ secrets.ETOKEN }}
+                GH_REPO: Equicord/Equibored
+                USERNAME: GitHub-Actions
+
             - name: Upload Stable Build to Builds repo
               if: ${{ github.ref_name == 'main' }}
               run: |
-                git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git upload
+                git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git upload
                 cd upload
 
                 cd stable
@@ -125,16 +131,18 @@ jobs:
 
                 git add -A
                 git commit -m "Stable Build for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-                git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git
+                git push --force https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git
               env:
+                API_TOKEN: ${{ secrets.ETOKEN }}
                 DATE: ${{ steps.date.outputs.time }}
-                TIME: ${{ steps.date.outputs.time }}
                 GH_REPO: Equicord/Builds
+                TIME: ${{ steps.date.outputs.time }}
+                USERNAME: GitHub-Actions
 
             - name: Upload Dev Build To Builds Repo
               if: ${{ github.ref_name == 'dev' }}
               run: |
-                git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git upload
+                git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git upload
                 cd upload
 
                 cd devbuilds
@@ -143,8 +151,10 @@ jobs:
 
                 git add -A
                 git commit -m "Dev Build for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-                git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git
+                git push --force https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git
               env:
+                API_TOKEN: ${{ secrets.ETOKEN }}
                 DATE: ${{ steps.date.outputs.time }}
-                TIME: ${{ steps.date.outputs.time }}
                 GH_REPO: Equicord/Builds
+                TIME: ${{ steps.date.outputs.time }}
+                USERNAME: GitHub-Actions
