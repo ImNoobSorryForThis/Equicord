@@ -121,7 +121,7 @@ jobs:
 
                 cd stable
                 mkdir -p $DATE/$TIME
-                cp ../../dist/* ./$DATE/$TIME
+                cp -r ../../dist/* ./$DATE/$TIME
 
                 git add -A
                 git commit -m "Stable Build for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
@@ -139,7 +139,7 @@ jobs:
 
                 cd devbuilds
                 mkdir -p $DATE/$TIME
-                cp ../../dist/* ./$DATE/$TIME
+                cp -r ../../dist/* ./$DATE/$TIME
 
                 git add -A
                 git commit -m "Dev Build for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
