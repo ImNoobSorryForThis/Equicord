@@ -137,7 +137,7 @@ jobs:
                 git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git upload
                 cd upload
 
-                cd devbuild
+                cd devbuilds
                 mkdir -p $DATE/$TIME
                 cp ../dist/* ./$DATE/$TIME
 
