@@ -74,11 +74,15 @@ jobs:
               if: ${{ github.ref_name == 'main' }}
               run: |
                 gh release upload latest --clobber dist/release/*
+              env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Upload Equicord Dev
               if: ${{ github.ref_name == 'dev' }}
               run: |
                 gh release upload devbuild --clobber dist/release/*
+              env:
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Upload Plugins JSON to Equibored repo
               if: ${{ github.ref_name == 'main' }}
@@ -92,7 +96,6 @@ jobs:
                 git commit -m "Plugins for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
                 git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git
               env:
-                API_TOKEN: ${{ secrets.ETOKEN }}
                 GH_REPO: Equicord/Equibored
                 USERNAME: GitHub-Actions
 
