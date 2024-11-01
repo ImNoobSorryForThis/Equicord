@@ -2,8 +2,7 @@ name: Upload Builds
 on:
     workflow_run:
         workflows: [Release]
-        types:
-            - completed
+        types: [completed]
 env:
     FORCE_COLOR: true
     REPO: Equicord/Builds
@@ -16,6 +15,7 @@ jobs:
     Date:
         name: Date
         runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         outputs:
             DATE: ${{ steps.combined.outputs.DATE }}
             TIME: ${{ steps.combined.outputs.TIME }}
@@ -40,8 +40,8 @@ jobs:
                   MINUTES: ${{ steps.date.outputs.minutes }}
                   SECONDS: ${{ steps.date.outputs.seconds }}
 
-    Build:
-        name: Build Equicord
+    Upload:
+        name: Upload Build
         runs-on: ubuntu-latest
         needs: Date
         env:
