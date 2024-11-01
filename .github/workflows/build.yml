@@ -100,15 +100,14 @@ jobs:
             - name: Combine Time
               id: combined
               run: |
-                echo "TIME=$HOURS-$MINUTES-$SECONDS" >> $GITHUB_ENV
+                echo "TIME=$HOURS-$MINUTES" >> $GITHUB_ENV
                 echo "DATE=$YEAR/$MONTH/$DAY" >> $GITHUB_ENV
               env:
                 YEAR: ${{ steps.date.outputs.year }}
                 MONTH: ${{ steps.date.outputs.month }}
                 DAY: ${{ steps.date.outputs.day }}
                 HOURS: ${{ steps.date.outputs.hours }}
-                MINUTES: ${{ steps.date.outputs.hours }}
-                SECONDS: ${{ steps.date.outputs.seconds }}
+                MINUTES: ${{ steps.date.outputs.minutes }}
 
             - name: Upload Plugins JSON to Equibored repo
               if: ${{ github.ref_name == 'main' }}
