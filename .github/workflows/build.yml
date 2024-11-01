@@ -97,18 +97,18 @@ jobs:
               with:
                 format: "MM-DD-YYYY"
 
-            - name: Get Hours Minutes and Seconds
-              id: time
-              uses: Kaven-Universe/github-action-current-date-time@v1
-
             - name: Combine Time
               id: combined
               run: |
-                echo "time=$HOURS-$MINUTES-$SECONDS"
+                echo "TIME=$HOURS-$MINUTES-$SECONDS" >> $GITHUB_ENV
+                echo "DATE=$MONTH-$DAY-$YEAR" >> $GITHUB_ENV
               env:
+                YEAR: ${{ steps.date.outputs.year }}
+                MONTH: ${{ steps.date.outputs.month }}
+                DAY: ${{ steps.date.outputs.day }}
                 HOURS: ${{ steps.date.outputs.hours }}
                 MINUTES: ${{ steps.date.outputs.hours }}
-                SECONDS: ${{ steps.t1.outputs.seconds }}
+                SECONDS: ${{ steps.date.outputs.seconds }}
 
             - name: Upload Plugins JSON to Equibored repo
               if: ${{ github.ref_name == 'main' }}
@@ -141,7 +141,7 @@ jobs:
                 git push --force https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git
               env:
                 API_TOKEN: ${{ secrets.ETOKEN }}
-                DATE: ${{ steps.date.outputs.time }}
+                DATE: ${{ env.DATE }}
                 GH_REPO: Equicord/Builds
                 TIME: ${{ env.TIME }}
                 USERNAME: GitHub-Actions
@@ -161,7 +161,7 @@ jobs:
                 git push --force https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git
               env:
                 API_TOKEN: ${{ secrets.ETOKEN }}
-                DATE: ${{ steps.date.outputs.time }}
+                DATE: ${{ env.DATE }}
                 GH_REPO: Equicord/Builds
                 TIME: ${{ env.TIME }}
                 USERNAME: GitHub-Actions
