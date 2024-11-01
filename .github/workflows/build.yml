@@ -95,7 +95,7 @@ jobs:
               id: date
               uses: Kaven-Universe/github-action-current-date-time@v1
               with:
-                format: "MM-DD-YYYY"
+                timezone-offset: -500
 
             - name: Combine Time
               id: combined
