@@ -91,17 +91,24 @@ jobs:
                 git config --global user.name "GitHub-Actions"
                 git config --global user.email actions@github.com
 
-            - name: Get current date
+            - name: Get Month Day Year
               id: date
               uses: Kaven-Universe/github-action-current-date-time@v1
               with:
                 format: "MM-DD-YYYY"
 
-            - name: Get current date
+            - name: Get Hours Minutes and Seconds
               id: time
               uses: Kaven-Universe/github-action-current-date-time@v1
-              with:
-                format: "HH-mm-ss"
+
+            - name: Combine Time
+              id: combined
+              run: |
+                echo "time=$HOURS-$MINUTES-$SECONDS"
+              env:
+                HOURS: ${{ steps.date.outputs.hours }}
+                MINUTES: ${{ steps.date.outputs.hours }}
+                SECONDS: ${{ steps.t1.outputs.seconds }}
 
             - name: Upload Plugins JSON to Equibored repo
               if: ${{ github.ref_name == 'main' }}
@@ -136,7 +143,7 @@ jobs:
                 API_TOKEN: ${{ secrets.ETOKEN }}
                 DATE: ${{ steps.date.outputs.time }}
                 GH_REPO: Equicord/Builds
-                TIME: ${{ steps.date.outputs.time }}
+                TIME: ${{ env.TIME }}
                 USERNAME: GitHub-Actions
 
             - name: Upload Dev Build To Builds Repo
@@ -156,5 +163,5 @@ jobs:
                 API_TOKEN: ${{ secrets.ETOKEN }}
                 DATE: ${{ steps.date.outputs.time }}
                 GH_REPO: Equicord/Builds
-                TIME: ${{ steps.date.outputs.time }}
+                TIME: ${{ env.TIME }}
                 USERNAME: GitHub-Actions
