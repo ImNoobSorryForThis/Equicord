@@ -6,7 +6,7 @@ on:
         branches: [main]
 env:
     FORCE_COLOR: true
-    REPO: Equicord/Builds
+    REPO: Equicord/Equibored
     TOKEN: ${{ secrets.ETOKEN }}
     USERNAME: GitHub-Actions
 
@@ -39,7 +39,7 @@ jobs:
                   git clone https://$USERNAME:$TOKEN@github.com/$REPO.git plugins
                   cd plugins
 
-                  cp ../release/*.json .
+                  cp ../release/*plugins.json .
                   git add -A
 
                   git commit -m "Plugins for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
