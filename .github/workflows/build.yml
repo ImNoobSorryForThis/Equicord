@@ -95,13 +95,13 @@ jobs:
               id: date
               uses: Kaven-Universe/github-action-current-date-time@v1
               with:
-                timezone-offset: -500
+                timezone-offset: 240
 
             - name: Combine Time
               id: combined
               run: |
                 echo "TIME=$HOURS-$MINUTES-$SECONDS" >> $GITHUB_ENV
-                echo "DATE=$MONTH-$DAY-$YEAR" >> $GITHUB_ENV
+                echo "DATE=$YEAR/$MONTH/$DAY" >> $GITHUB_ENV
               env:
                 YEAR: ${{ steps.date.outputs.year }}
                 MONTH: ${{ steps.date.outputs.month }}
