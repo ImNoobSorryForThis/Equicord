@@ -115,15 +115,15 @@ jobs:
                 cd upload
 
                 cd stable
-                mkdir $DATE
-                cd $DATE
-                cp ../dist/* .
+                mkdir -p $DATE/$TIME
+                cp ../dist/* ./$DATE/$TIME
 
                 git add -A
                 git commit -m "Stable Build for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
                 git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git
               env:
                 DATE: ${{ steps.date.outputs.time }}
+                TIME: ${{ steps.date.outputs.time }}
                 GH_REPO: Equicord/Builds
 
             - name: Upload Dev Build To Builds Repo
@@ -133,13 +133,13 @@ jobs:
                 cd upload
 
                 cd devbuild
-                mkdir $DATE
-                cd $DATE
-                cp ../dist/* .
+                mkdir -p $DATE/$TIME
+                cp ../dist/* ./$DATE/$TIME
 
                 git add -A
                 git commit -m "Dev Build for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
                 git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GH_REPO.git
               env:
                 DATE: ${{ steps.date.outputs.time }}
+                TIME: ${{ steps.date.outputs.time }}
                 GH_REPO: Equicord/Builds
