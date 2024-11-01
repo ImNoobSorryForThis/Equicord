@@ -8,6 +8,8 @@ env:
     REPO: Equicord/Builds
     TOKEN: ${{ secrets.ETOKEN }}
     USERNAME: GitHub-Actions
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
 
 permissions: write-all
 
@@ -63,6 +65,11 @@ jobs:
                 name: build
                 path: ./release
                 search_artifacts: true
+
+            - name: Sleep for 3 minutes
+              if: ${{ github.ref_name == 'main' }}
+              run: sleep 20s
+              shell: bash
 
             - name: Upload Stable Build to Builds repo
               if: ${{ github.ref_name == 'main' }}
